@@ -3,6 +3,7 @@ A simple Authorisation plugin for spigot
 
 
 This plugin relies on the plugin "Skript" to be able to run on bukkit/spigot.
+Download from here
 http://dev.bukkit.org/bukkit-plugins/skript/
 
 
