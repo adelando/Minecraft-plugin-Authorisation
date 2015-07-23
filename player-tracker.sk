@@ -1,0 +1,43 @@
+#Player-Tracker
+#Version: 1.0
+#Author: adelando
+
+#Have a questions or additional request? Contact me via:
+#Steam: http://steamcommunity.com/id/aidanorlando
+#Skype: aidanorlando
+#Email: me@adelando.net
+#PMC: http://www.planetminecraft.com/member/aidanorlando/
+
+options:
+	#use 'join' to allow the player to join before running the script, 'connect' to prevent this
+	join-or-connect: join
+	
+	#kick the player after collecting their details?
+	kick-player: true
+	
+	#the message displayed on the kick screen - DO NOT leave it blank as this will result in an error
+	kick-message: Thank you for registering for this event, your username has been recorded :)
+
+#script activation
+on {@join-or-connect}:
+
+	#fails to set if the player is in offline mode (non-premium)
+	set {_player-tracker-UUID} to UUID of the player
+	
+	#logs player info to /plugins/skript/logs/players.log
+	log "Player name: %name of player%" to "players.log"
+	log "- Login date: %now%" to "players.log"
+	log "- Player UUID: %uuid of the player%" to "players.log"
+		
+	#tests for possession of UUID & logs result to /plugins/skript/logs/players.log
+	if {_player-tracker-UUID} = uuid of the player:
+		log "- Premium: true" to "players.log"
+	else:
+		log "- Premium: false" to "players.log"
+		
+	#optional divider - remove it if you like
+	log "---------------------------------------------------------------------" to "players.log"
+	
+	#kicks the player - configure the message (in quotes '') to meet your needs
+	if {@kick-player} = true:
+		kick the player due to "{@kick-message}"	
